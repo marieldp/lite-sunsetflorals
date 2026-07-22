@@ -40,29 +40,29 @@ letter-spacing: 1px;
 
 }
 /* =========================================
-           CUSTOM SLIDE-IN IMAGE INVITATION
+           SLIDE UP INVITATION & HAND
            ========================================= */
-        .slide-from-right {
+        .slide-up-reveal {
             opacity: 0;
-            /* Starts off-screen to the right side with a slight natural tilt */
-            transform: translateX(50vw) rotate(5deg); 
+            /* Starts hidden below the section */
+            transform: translateY(20vh); 
             transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Triggers the slide-in when you scroll down to the section */
-        .reveal-on-scroll.is-visible .slide-from-right {
+        /* Triggers the slide-up when you scroll down to it */
+        .reveal-on-scroll.is-visible .slide-up-reveal {
             opacity: 1;
-            transform: translateX(0) rotate(0deg);
+            transform: translateY(0);
         }
 
         /* The container holding your paper image */
         .invitation-image-wrapper {
             position: relative;
             display: inline-block;
-            max-width: 600px; /* Adjust this to make your paperinvite.png larger or smaller */
+            max-width: 600px; 
             width: 100%;
-            margin: 0 auto;
             z-index: 5;
+            margin-bottom: 80px; /* Gives the paper some breathing room from the bottom */
         }
 
         /* Your Paper Invite Image */
@@ -71,29 +71,28 @@ letter-spacing: 1px;
             height: auto;
             display: block;
             border-radius: 4px;
-            box-shadow: -15px 15px 40px rgba(0,0,0,0.2); /* Gives it a realistic 3D float */
+            box-shadow: -15px 15px 40px rgba(0,0,0,0.2); 
         }
 
-        /* The Hand - Made MUCH bigger! */
+        /* The Hand - Anchored to the Section Bottom! */
         .holding-hand-img {
             position: absolute;
+            bottom: 0; /* Locks the flat end perfectly to the section bottom! */
+            left: 50%; /* Starts at the exact center of the screen */
+            margin-left: 180px; /* Pushes it to the right edge of your centered paper */
             z-index: 10;
             pointer-events: none; 
-            
-            /* INCREASED SIZE */
-            width: 350px; /* A much larger, realistic size */
-            
-            /* POSITIONING */
-            right: -130px; /* Pushes the larger hand off the edge. Tweak this if it overlaps too much! */
-            top: 50%;     
-            transform: translateY(-50%); 
+            width: 320px; 
         }
 
         /* Mobile Adjustments */
         @media screen and (max-width: 768px) {
+            .invitation-image-wrapper {
+                margin-bottom: 60px;
+            }
             .holding-hand-img {
-                width: 200px; /* Keeps the hand substantial on mobile phones */
-                right: -70px; 
+                width: 180px; 
+                margin-left: 60px; /* Adjusts the hand to match the smaller mobile paper */
             }
         }
 /* =========================================
@@ -629,21 +628,18 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
 </section>
 
 <!-- =========================================
-     FORMAL INVITATION (IMAGE & SLIDE-IN)
+     FORMAL INVITATION (SLIDE UP FROM BELOW)
      ========================================= -->
-<section id="formal-invitation" class="reveal-on-scroll" style="padding: 120px 20px; background-color: #FDF8F5; overflow-x: hidden; position: relative; text-align: center; min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+<section id="formal-invitation" class="reveal-on-scroll" style="padding: 100px 20px 0 20px; background-color: #FDF8F5; overflow: hidden; position: relative; text-align: center; min-height: 80vh; display: flex; align-items: center; justify-content: center;">
     
-    <!-- The wrapper that slides in from the right side -->
-    <div class="slide-from-right invitation-image-wrapper">
-        
-        <!-- 1. YOUR FULLY DESIGNED PAPER INVITATION -->
+    <!-- The paper that slides up -->
+    <div class="slide-up-reveal invitation-image-wrapper">
         <img src="paperinvite.png" alt="Formal Invitation" class="paper-invite-img">
-
-        <!-- 2. THE HAND HOLDING IT (Now much larger!) -->
-        <img src="hand.png" alt="Hand" class="holding-hand-img" onerror="this.style.display='none'">
-        
     </div>
 
+    <!-- The hand anchored to the bottom, sliding up with the paper -->
+    <img src="hand.png" alt="Hand" class="slide-up-reveal holding-hand-img" onerror="this.style.display='none'">
+    
 </section>
 
 
