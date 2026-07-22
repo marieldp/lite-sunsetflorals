@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&family=Pinyon+Script&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
 .envelope-glow {
 position: absolute;
 top: 40%; left: 50%;
@@ -38,7 +39,59 @@ letter-spacing: 1px;
 }
 
 }
+/* =========================================
+           CUSTOM SLIDE-IN INVITATION
+           ========================================= */
+        .reveal-slide-in {
+            opacity: 0;
+            /* Starts off-screen to the right, tilted like someone is holding it */
+            transform: translateX(100vw) rotate(4deg);
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
+        .reveal-slide-in.is-visible {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg);
+        }
+
+        /* The Flexible Paper Container */
+        .paper-scroll {
+            background-color: #FFF0EA; /* Sunset sand color */
+            background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+            box-shadow: -15px 15px 40px rgba(0,0,0,0.15); /* Floating drop shadow */
+            border: 1px solid #E27D60; /* Coral border */
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            max-width: 750px;
+            margin: 0 auto;
+            z-index: 5;
+        }
+
+        /* The Hand */
+        .holding-hand-img {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none; 
+            
+            /* POSITIONING */
+            right: -60px; /* Pushes it off the right edge. Adjust this based on your image crop! */
+            top: 50%;     
+            transform: translateY(-50%); 
+            
+            width: 180px; 
+        }
+
+        /* Mobile Adjustments */
+        @media screen and (max-width: 768px) {
+            .paper-scroll {
+                flex-direction: column; 
+            }
+            .holding-hand-img {
+                width: 110px; 
+                right: -30px; 
+            }
+        }
 /* =========================================
   MUSIC BUTTON SECTION STYLES
   ========================================= */
@@ -571,38 +624,43 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
 </div>
 </section>
 
-<section id="formal-invitation" class="paper-texture" style="padding: 100px 20px; background-color: #FFF0EA; text-align: center; position: relative; z-index: 10; margin-top: -1px; overflow: hidden;">
-<div class="reveal-on-scroll" style="max-width: 750px; margin: 0 auto; position: relative;">
-<div style="position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; background-color: #8B3A3A; border: 1px solid #E27D60; border-radius: 2px; z-index: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.2);"></div>
-<div style="background: #ffffff; border: 1px solid #E27D60; padding: 15px; position: relative; z-index: 1; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-<div style="border: 1.5px solid #E27D60; padding: 70px 40px; position: relative;">
-<div style="position: absolute; top: 12px; left: 12px; width: 30px; height: 30px; border-top: 2px solid #E27D60; border-left: 2px solid #E27D60;"></div>
-<div style="position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-top: 2px solid #E27D60; border-right: 2px solid #E27D60;"></div>
+<!-- =========================================
+     FORMAL INVITATION (SLIDE-IN HYBRID)
+     ========================================= -->
+<section id="formal-invitation" style="padding: 100px 20px; background-color: #FDF8F5; overflow: hidden; position: relative; text-align: center;">
+    
+    <!-- The wrapper that triggers the slide-in animation and acts as the paper -->
+    <div class="reveal-slide-in paper-scroll">
+        
+        <!-- THE HAND HOLDING THE PAPER -->
+        <!-- Make sure you have a 'hand.png' file in your folder -->
+        <img src="hand.png" alt="" class="holding-hand-img" onerror="this.style.display='none'">
+        
+        <!-- THE LIVE INVITATION TEXT -->
+        <div style="flex: 1; padding: 70px 40px; position: relative; z-index: 1;">
+            
+            <p style="font-family: 'Georgia', serif; letter-spacing: 5px; font-size: 11px; text-transform: uppercase; color: #E27D60; margin-bottom: 35px; font-weight: 700;">Together with their families</p>
 
-<p style="font-family: 'Georgia', serif; letter-spacing: 5px; font-size: 11px; text-transform: uppercase; color: #E27D60; margin-bottom: 35px; font-weight: 700;">Together with their families</p>
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: clamp(55px, 12vw, 95px); color: #8B3A3A; margin: 0; font-weight: 400; line-height: 1.1;">
+                <span id="config-bride-2">Mariel</span> & <span id="config-groom-2">Jasper</span>
+            </h2>
 
-<h2 style="font-family: 'Great Vibes', cursive; font-size: clamp(55px, 12vw, 95px); color: #8B3A3A; margin: 0; font-weight: 400; line-height: 1.1;">
-<span id="config-bride-2">Catherine</span> & <span id="config-groom-2">Nathan</span>
-</h2>
+            <div style="margin: 35px 0; color: #F8B195; font-size: 35px; line-height: 1;">❦</div>
 
-<div style="margin: 35px 0; color: #F8B195; font-size: 35px; line-height: 1;">❦</div>
+            <p style="font-family: 'Georgia', serif; font-size: 19px; line-height: 2.0; color: #8B3A3A; font-style: italic; max-width: 80%; margin: 0 auto;">
+                request the honor of your presence as they exchange marriage vows and celebrate the beginning of their life together
+            </p>
 
-<p style="font-family: 'Georgia', serif; font-size: 19px; line-height: 2.0; color: #8B3A3A; font-style: italic; max-width: 80%; margin: 0 auto;">
-request the honor of your presence as they exchange marriage vows and celebrate the beginning of their life together
-</p>
-
-<div style="margin-top: 55px; padding-top: 35px; border-top: 1px solid #F8B195; display: inline-block; width: 100%;">
-<p style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #E27D60; margin: 0;">Saturday</p>
-<p id="config-date-2" style="font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px); margin: 15px 0; color: #8B3A3A; letter-spacing: 4px; font-weight: 700;">NOVEMBER 06, 2027</p>
-<p id="config-time-1" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #E27D60; margin: 0;">At Two O'Clock in the Afternoon</p>
-</div>
-<div style="position: absolute; bottom: 12px; left: 12px; width: 30px; height: 30px; border-bottom: 2px solid #E27D60; border-left: 2px solid #E27D60;"></div>
-<div style="position: absolute; bottom: 12px; right: 12px; width: 30px; height: 30px; border-bottom: 2px solid #E27D60; border-right: 2px solid #E27D60;"></div>
-</div>
-</div>
-</div>
-
+            <div style="margin-top: 55px; padding-top: 35px; border-top: 1px solid #F8B195; display: inline-block; width: 100%;">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #E27D60; margin: 0;">Saturday</p>
+                <p id="config-date-2" style="font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px); margin: 15px 0; color: #8B3A3A; letter-spacing: 4px; font-weight: 700;">NOVEMBER 06, 2027</p>
+                <p id="config-time-1" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #E27D60; margin: 0;">At Two O'Clock in the Afternoon</p>
+            </div>
+            
+        </div>
+    </div>
 </section>
+
 
 
 <section id="celebration" style="padding: 50px 20px 100px 20px; background-color: #ffff; text-align: center;">
@@ -964,8 +1022,8 @@ const audioEl = document.getElementById('bg-music'); if(audioEl) audioEl.load();
 // Init Logic
 
 
-const revealElements = document.querySelectorAll('.reveal-on-scroll');
-if (typeof observer !== 'undefined') revealElements.forEach(el => observer.observe(el));
+const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-slide-in');
+  if (typeof observer !== 'undefined') revealElements.forEach(el => observer.observe(el));
 
 
 
