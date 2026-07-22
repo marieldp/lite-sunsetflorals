@@ -40,56 +40,60 @@ letter-spacing: 1px;
 
 }
 /* =========================================
-           CUSTOM SLIDE-IN INVITATION
+           CUSTOM SLIDE-IN IMAGE INVITATION
            ========================================= */
-        .reveal-slide-in {
+        .slide-from-right {
             opacity: 0;
-            /* Starts off-screen to the right, tilted like someone is holding it */
-            transform: translateX(100vw) rotate(4deg);
+            /* Starts off-screen to the right side with a slight natural tilt */
+            transform: translateX(50vw) rotate(5deg); 
             transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .reveal-slide-in.is-visible {
+        /* Triggers the slide-in when you scroll down to the section */
+        .reveal-on-scroll.is-visible .slide-from-right {
             opacity: 1;
             transform: translateX(0) rotate(0deg);
         }
 
-        /* The Flexible Paper Container */
-        .paper-scroll {
-            background-color: #FFF0EA; /* Sunset sand color */
-            background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
-            box-shadow: -15px 15px 40px rgba(0,0,0,0.15); /* Floating drop shadow */
-            border: 1px solid #E27D60; /* Coral border */
-            border-radius: 4px;
+        /* The container holding your paper image */
+        .invitation-image-wrapper {
             position: relative;
-            display: flex;
-            max-width: 750px;
+            display: inline-block;
+            max-width: 600px; /* Adjust this to make your paperinvite.png larger or smaller */
+            width: 100%;
             margin: 0 auto;
             z-index: 5;
         }
 
-        /* The Hand */
+        /* Your Paper Invite Image */
+        .paper-invite-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            box-shadow: -15px 15px 40px rgba(0,0,0,0.2); /* Gives it a realistic 3D float */
+        }
+
+        /* The Hand - Made MUCH bigger! */
         .holding-hand-img {
             position: absolute;
             z-index: 10;
             pointer-events: none; 
             
+            /* INCREASED SIZE */
+            width: 350px; /* A much larger, realistic size */
+            
             /* POSITIONING */
-            right: -60px; /* Pushes it off the right edge. Adjust this based on your image crop! */
+            right: -130px; /* Pushes the larger hand off the edge. Tweak this if it overlaps too much! */
             top: 50%;     
             transform: translateY(-50%); 
-            
-            width: 180px; 
         }
 
         /* Mobile Adjustments */
         @media screen and (max-width: 768px) {
-            .paper-scroll {
-                flex-direction: column; 
-            }
             .holding-hand-img {
-                width: 110px; 
-                right: -30px; 
+                width: 200px; /* Keeps the hand substantial on mobile phones */
+                right: -70px; 
             }
         }
 /* =========================================
@@ -625,39 +629,21 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
 </section>
 
 <!-- =========================================
-     FORMAL INVITATION (SLIDE-IN FIX)
+     FORMAL INVITATION (IMAGE & SLIDE-IN)
      ========================================= -->
-<section id="formal-invitation" class="reveal-on-scroll" style="padding: 100px 20px; background-color: #FDF8F5; overflow-x: hidden; position: relative; text-align: center;">
+<section id="formal-invitation" class="reveal-on-scroll" style="padding: 120px 20px; background-color: #FDF8F5; overflow-x: hidden; position: relative; text-align: center; min-height: 60vh; display: flex; align-items: center; justify-content: center;">
     
-    <!-- The paper that will slide in -->
-    <div class="slide-from-right paper-scroll">
+    <!-- The wrapper that slides in from the right side -->
+    <div class="slide-from-right invitation-image-wrapper">
         
-        <!-- THE HAND HOLDING THE PAPER -->
-        <img src="hand.png" alt="" class="holding-hand-img" onerror="this.style.display='none'">
+        <!-- 1. YOUR FULLY DESIGNED PAPER INVITATION -->
+        <img src="paperinvite.png" alt="Formal Invitation" class="paper-invite-img">
+
+        <!-- 2. THE HAND HOLDING IT (Now much larger!) -->
+        <img src="hand.png" alt="Hand" class="holding-hand-img" onerror="this.style.display='none'">
         
-        <!-- THE LIVE INVITATION TEXT -->
-        <div style="flex: 1; padding: 70px 40px; position: relative; z-index: 1;">
-            
-            <p style="font-family: 'Georgia', serif; letter-spacing: 5px; font-size: 11px; text-transform: uppercase; color: #E27D60; margin-bottom: 35px; font-weight: 700;">Together with their families</p>
-
-            <h2 style="font-family: 'Great Vibes', cursive; font-size: clamp(55px, 12vw, 95px); color: #8B3A3A; margin: 0; font-weight: 400; line-height: 1.1;">
-                <span id="config-bride-2">Mariel</span> & <span id="config-groom-2">Jasper</span>
-            </h2>
-
-            <div style="margin: 35px 0; color: #F8B195; font-size: 35px; line-height: 1;">❦</div>
-
-            <p style="font-family: 'Georgia', serif; font-size: 19px; line-height: 2.0; color: #8B3A3A; font-style: italic; max-width: 80%; margin: 0 auto;">
-                request the honor of your presence as they exchange marriage vows and celebrate the beginning of their life together
-            </p>
-
-            <div style="margin-top: 55px; padding-top: 35px; border-top: 1px solid #F8B195; display: inline-block; width: 100%;">
-                <p style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #E27D60; margin: 0;">Saturday</p>
-                <p id="config-date-2" style="font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px); margin: 15px 0; color: #8B3A3A; letter-spacing: 4px; font-weight: 700;">NOVEMBER 06, 2027</p>
-                <p id="config-time-1" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #E27D60; margin: 0;">At Two O'Clock in the Afternoon</p>
-            </div>
-            
-        </div>
     </div>
+
 </section>
 
 
