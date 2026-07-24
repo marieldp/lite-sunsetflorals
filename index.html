@@ -40,30 +40,18 @@ letter-spacing: 1px;
 
 }
 /* =========================================
-           SLIDE-IN FROM LEFT (PAPER & HAND)
+           SLIDE-IN FROM LEFT (PAPER ONLY)
            ========================================= */
-        /* Paper Animation */
         .slide-from-left {
             opacity: 0;
+            /* Starts off-screen to the left */
             transform: translateX(-40vw); 
             transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
+
         .reveal-on-scroll.is-visible .slide-from-left {
             opacity: 1;
             transform: translateX(0);
-        }
-
-        /* Hand Animation (Includes the mirror flip!) */
-        .slide-from-left-hand {
-            opacity: 0;
-            /* Starts off screen left, and applies the mirror flip */
-            transform: translateX(-40vw) scaleX(-1);
-            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .reveal-on-scroll.is-visible .slide-from-left-hand {
-            opacity: 1;
-            /* Lands in place, keeping the mirror flip */
-            transform: translateX(0) scaleX(-1);
         }
 
         /* The container holding your paper image */
@@ -73,7 +61,7 @@ letter-spacing: 1px;
             max-width: 600px; 
             width: 100%;
             z-index: 5;
-            margin-bottom: 80px; /* Breathing room from the bottom */
+            margin: 0 auto;
         }
 
         /* Your Paper Invite Image */
@@ -82,24 +70,7 @@ letter-spacing: 1px;
             height: auto;
             display: block;
             border-radius: 4px;
-            box-shadow: 15px 15px 40px rgba(0,0,0,0.2); 
-        }
-
-        /* The Hand - Anchored Bottom & Pushed Left! */
-        .holding-hand-img {
-            position: absolute;
-            
-            /* 1. BOTTOM ANCHOR (Adjust negative number to hide transparent pixels) */
-            bottom: -30px; 
-            display: block; 
-            
-            /* 2. LEFT SIDE ALIGNMENT */
-            left: 50%; 
-            margin-left: -650px; /* This negative number pushes it to the left of the paper! */
-            
-            z-index: 10;
-            pointer-events: none; 
-            width: 350px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
         }
 
         /* Mobile Adjustments */
