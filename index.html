@@ -102,10 +102,14 @@ letter-spacing: 1px;
             color: #D36A2D; /* Burnt Orange */
         }
 
+/* 1. The Names Container */
         .name-line {
             display: flex;
             align-items: center;
-            gap: 2cqi; /* Dynamic gap */
+            gap: 2cqi; 
+            
+            /* ADDED THIS: Controls the exact space directly beneath the names */
+            margin-bottom: 2cqi; 
         }
 
         .name-green {
@@ -119,18 +123,26 @@ letter-spacing: 1px;
             margin-top: -3cqi; /* Nudges the '&' slightly higher */
         }
 
-        .invite-message {
+.invite-message {
             font-family: 'Montserrat', sans-serif;
             font-size: 3.5cqi;
             color: #2C2C2C;
-            margin: 5cqi 0;
+            
+            /* CHANGED THIS: Removed the heavy top margin so it sits closer to the names */
+            margin-top: 0; 
+            margin-bottom: 4cqi; 
+            
             line-height: 1.4;
-            max-width: 50cqi; /* Forces the text to break exactly like your image */
+            max-width: 50cqi; 
         }
 
+/* 3. The Date */
         .invite-date {
             font-family: 'Cinzel', serif;
-            font-size: 6cqi;
+            
+            /* CHANGED THIS: Shrunk the date significantly (was 6cqi, now 4.5cqi) */
+            font-size: 4.5cqi; 
+            
             color: #94ACA1;
             margin: 0 0 3cqi 0;
             line-height: 1.2;
