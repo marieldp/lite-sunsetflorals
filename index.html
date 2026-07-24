@@ -40,19 +40,30 @@ letter-spacing: 1px;
 
 }
 /* =========================================
-           SLIDE-IN FROM LEFT INVITATION
+           SLIDE-IN FROM LEFT (PAPER & HAND)
            ========================================= */
+        /* Paper Animation */
         .slide-from-left {
             opacity: 0;
-            /* Starts off-screen to the left (-50vw) with a slight tilt */
-            transform: translateX(-50vw) rotate(-5deg); 
+            transform: translateX(-40vw); 
             transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
-
-        /* Triggers the slide-in when you scroll down */
         .reveal-on-scroll.is-visible .slide-from-left {
             opacity: 1;
-            transform: translateX(0) rotate(0deg);
+            transform: translateX(0);
+        }
+
+        /* Hand Animation (Includes the mirror flip!) */
+        .slide-from-left-hand {
+            opacity: 0;
+            /* Starts off screen left, and applies the mirror flip */
+            transform: translateX(-40vw) scaleX(-1);
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-on-scroll.is-visible .slide-from-left-hand {
+            opacity: 1;
+            /* Lands in place, keeping the mirror flip */
+            transform: translateX(0) scaleX(-1);
         }
 
         /* The container holding your paper image */
@@ -61,8 +72,8 @@ letter-spacing: 1px;
             display: inline-block;
             max-width: 600px; 
             width: 100%;
-            margin: 0 auto;
             z-index: 5;
+            margin-bottom: 80px; /* Breathing room from the bottom */
         }
 
         /* Your Paper Invite Image */
@@ -74,28 +85,31 @@ letter-spacing: 1px;
             box-shadow: 15px 15px 40px rgba(0,0,0,0.2); 
         }
 
-        /* The Hand - Anchored to the Left Side! */
+        /* The Hand - Anchored Bottom & Pushed Left! */
         .holding-hand-img {
             position: absolute;
+            
+            /* 1. BOTTOM ANCHOR (Adjust negative number to hide transparent pixels) */
+            bottom: -30px; 
+            display: block; 
+            
+            /* 2. LEFT SIDE ALIGNMENT */
+            left: 50%; 
+            margin-left: -400px; /* This negative number pushes it to the left of the paper! */
+            
             z-index: 10;
             pointer-events: none; 
-            
-            width: 350px; /* Adjust size here */
-            
-            /* POSITIONING */
-            left: -130px; /* Anchors to the left edge */
-            top: 50%;     /* Centers vertically */
-            
-            /* translateY keeps it centered. 
-               scaleX(-1) horizontally flips your image like a mirror! */
-            transform: translateY(-50%) scaleX(-1); 
+            width: 350px; 
         }
 
         /* Mobile Adjustments */
         @media screen and (max-width: 768px) {
+            .invitation-image-wrapper {
+                margin-bottom: 60px;
+            }
             .holding-hand-img {
                 width: 200px; 
-                left: -70px; 
+                margin-left: -180px; /* Matches the smaller mobile paper */
             }
         }
 /* =========================================
@@ -631,21 +645,18 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
 </section>
 
 <!-- =========================================
-     FORMAL INVITATION (SLIDE FROM LEFT)
+     FORMAL INVITATION (LEFT SLIDE + BOTTOM ANCHOR)
      ========================================= -->
-<section id="formal-invitation" class="reveal-on-scroll" style="padding: 120px 20px; background-color: #FDF8F5; overflow-x: hidden; position: relative; text-align: center; min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+<section id="formal-invitation" class="reveal-on-scroll" style="padding: 100px 20px 0 20px; background-color: #FDF8F5; overflow: hidden; position: relative; text-align: center; min-height: 80vh; display: flex; align-items: center; justify-content: center;">
     
-    <!-- The wrapper that slides in from the left side -->
+    <!-- The paper that slides from the left -->
     <div class="slide-from-left invitation-image-wrapper">
-        
-        <!-- 1. YOUR FULLY DESIGNED PAPER INVITATION -->
         <img src="paperinvite.png" alt="Formal Invitation" class="paper-invite-img">
-
-        <!-- 2. THE HAND HOLDING IT -->
-        <img src="hand.png" alt="Hand" class="holding-hand-img" onerror="this.style.display='none'">
-        
     </div>
 
+    <!-- The hand anchored to the bottom, sliding from the left -->
+    <img src="hand.png" alt="Hand" class="slide-from-left-hand holding-hand-img" onerror="this.style.display='none'">
+    
 </section>
 
 
