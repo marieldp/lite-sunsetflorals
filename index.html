@@ -733,20 +733,24 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
         <!-- The Blank Floral Background -->
         <img src="paperinvite.png" alt="Formal Invitation" class="paper-invite-img">
 
-        <!-- The Text Overlay -->
+<!-- The Text Overlay -->
         <div class="invitation-text-overlay">
-            <h2 class="invite-name name-orange">Catherine</h2>
+            <!-- ADDED id="formal-bride" -->
+            <h2 id="formal-bride" class="invite-name name-orange">Catherine</h2>
             
             <div class="name-line">
-                <h2 class="invite-name name-green">Nathan</h2>
+                <!-- ADDED id="formal-groom" -->
+                <h2 id="formal-groom" class="invite-name name-green">Nathan</h2>
                 <span class="invite-ampersand">&</span>
             </div>
             
             <p class="invite-message">With great joy, we invite<br>you to celebrate the<br>beginning of our<br>forever together on</p>
             
-            <p class="invite-date">November 26,<br>2027</p>
+            <!-- ADDED id="formal-date" -->
+            <p id="formal-date" class="invite-date">November 26, 2027</p>
             
-            <p class="invite-venue">Manila Cathedral</p>
+            <!-- ADDED id="formal-venue" -->
+            <p id="formal-venue" class="invite-venue">Manila Cathedral</p>
         </div>
 
     </div>
@@ -1038,6 +1042,12 @@ groom: "Nathan",
 dateFull: "November 26, 2027",       // Example: November 6, 2027
 dateCaps: "NOVEMBER 26, 2027",      // Example: NOVEMBER 06, 2027
 year: "2027",
+
+// --- FORMAL INVITATION INJECTORS ---
+applyText('formal-bride', CONFIG.bride);
+applyText('formal-groom', CONFIG.groom);
+applyText('formal-date', CONFIG.dateFull);
+applyText('formal-venue', CONFIG.churchName);
 
 // --- 2. Venues & Times ---
 timeCountdown: "2:00 PM",           // Used for the countdown timer logic
