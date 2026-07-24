@@ -11,7 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&family=Pinyon+Script&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap');
 .envelope-glow {
 position: absolute;
 top: 40%; left: 50%;
@@ -39,6 +41,108 @@ letter-spacing: 1px;
 }
 
 }
+
+/* =========================================
+           SLIDE-IN PAPER & TEXT OVERLAY
+           ========================================= */
+        .slide-from-left {
+            opacity: 0;
+            transform: translateX(-40vw); 
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal-on-scroll.is-visible .slide-from-left {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* The Container (Now using Container Queries!) */
+        .invitation-image-wrapper {
+            position: relative;
+            display: inline-block;
+            max-width: 600px; 
+            width: 100%;
+            z-index: 5;
+            margin: 0 auto;
+            
+            /* THIS IS THE MAGIC TRICK: It tells the text inside to scale based on this box's width */
+            container-type: inline-size; 
+        }
+
+        .paper-invite-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
+        }
+
+        /* The Overlay Box */
+        .invitation-text-overlay {
+            position: absolute;
+            /* Adjust these percentages to move the whole text block up/down or left/right */
+            top: 40%;  
+            left: 17%; 
+            width: 70%;
+            text-align: left;
+            pointer-events: none; /* Prevents text from interfering if someone tries to save the image */
+        }
+
+        /* Fluid Typography using 'cqi' (Container Query Inline) */
+        .invite-name {
+            font-family: 'Cinzel', serif; /* Elegant serif fallback */
+            font-size: 11cqi; /* Scales perfectly with the image */
+            font-weight: 400;
+            margin: 0;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .name-orange {
+            color: #D36A2D; /* Burnt Orange */
+        }
+
+        .name-line {
+            display: flex;
+            align-items: center;
+            gap: 2cqi; /* Dynamic gap */
+        }
+
+        .name-green {
+            color: #94ACA1; /* Sage Green */
+        }
+
+        .invite-ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 14cqi;
+            color: #E28C41; /* Golden Orange */
+            margin-top: -3cqi; /* Nudges the '&' slightly higher */
+        }
+
+        .invite-message {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5cqi;
+            color: #2C2C2C;
+            margin: 5cqi 0;
+            line-height: 1.4;
+            max-width: 50cqi; /* Forces the text to break exactly like your image */
+        }
+
+        .invite-date {
+            font-family: 'Cinzel', serif;
+            font-size: 6cqi;
+            color: #94ACA1;
+            margin: 0 0 3cqi 0;
+            line-height: 1.2;
+        }
+
+        .invite-venue {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4cqi;
+            color: #111111;
+            margin: 0;
+            letter-spacing: 1px;
+        }
 /* =========================================
            SLIDE-IN FROM LEFT (PAPER ONLY)
            ========================================= */
@@ -609,13 +713,34 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
 <!-- =========================================
      FORMAL INVITATION (PAPER ONLY)
      ========================================= -->
+<!-- =========================================
+     FORMAL INVITATION (PAPER + TEXT OVERLAY)
+     ========================================= -->
 <section id="formal-invitation" class="reveal-on-scroll" style="padding: 120px 20px; background-color: #FDF8F5; overflow: hidden; position: relative; text-align: center; min-height: 80vh; display: flex; align-items: center; justify-content: center;">
     
-    <!-- The paper that gracefully floats up -->
+    <!-- The paper wrapper -->
     <div class="slide-from-left invitation-image-wrapper">
+        
+        <!-- The Blank Floral Background -->
         <img src="paperinvite.png" alt="Formal Invitation" class="paper-invite-img">
-    </div>
 
+        <!-- The Text Overlay -->
+        <div class="invitation-text-overlay">
+            <h2 class="invite-name name-orange">Catherine</h2>
+            
+            <div class="name-line">
+                <h2 class="invite-name name-green">Nathan</h2>
+                <span class="invite-ampersand">&</span>
+            </div>
+            
+            <p class="invite-message">With great joy, we invite<br>you to celebrate the<br>beginning of our<br>forever together on</p>
+            
+            <p class="invite-date">November 26,<br>2027</p>
+            
+            <p class="invite-venue">Manila Cathedral</p>
+        </div>
+
+    </div>
 </section>
 
 
