@@ -42,7 +42,7 @@ letter-spacing: 1px;
 
 }
 /* =========================================
-           ROAD & MOVING CAR ANIMATION
+           ROAD & SLOW MOVING SIDEWAY CAR
            ========================================= */
         .road-container {
             position: relative;
@@ -52,6 +52,7 @@ letter-spacing: 1px;
             margin: 0 auto 30px auto;
             display: flex;
             align-items: center;
+            overflow: hidden; /* Keeps the car inside the road bounds */
         }
 
         /* The Dotted Ground Line */
@@ -67,58 +68,51 @@ letter-spacing: 1px;
             position: absolute;
             top: 50%;
             left: 0;
-            transform: translateY(-80%);
-            animation: driveCar 6s ease-in-out infinite;
+            transform: translateY(-85%);
+            
+            /* MAGIC SPEED FIX: 22s makes it drive VERY slowly! 
+               'linear' makes the movement smooth without sudden stops */
+            animation: driveSlow 22s linear infinite; 
         }
 
         /* The Car Icon Styling */
         .car-icon {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
         }
 
-        /* Continuous Drive Animation */
-        @keyframes driveCar {
+/* Continuous One-Way Drive (Left to Right Loop) */
+        @keyframes driveSlow {
             0% {
-                left: 0%;
-                transform: translateY(-80%) scaleX(1); /* Driving right */
+                left: -10%; /* Starts off-screen to the left (Church side) */
                 opacity: 0;
             }
-            10% {
-                opacity: 1;
-            }
-            45% {
-                left: 90%;
-                transform: translateY(-80%) scaleX(1); /* Reaches Reception */
-                opacity: 1;
-            }
-            50% {
-                left: 90%;
-                transform: translateY(-80%) scaleX(-1); /* Flips around! */
-                opacity: 0.8;
+            5% {
+                opacity: 1; /* Fades in smoothly as it enters the road */
             }
             90% {
-                left: 0%;
-                transform: translateY(-80%) scaleX(-1); /* Drives back */
-                opacity: 0.8;
+                opacity: 1; /* Stays visible all the way across */
             }
-            95%, 100% {
-                left: 0%;
-                transform: translateY(-80%) scaleX(1); /* Flips back to start */
+            98% {
+                left: 105%; /* Reaches off-screen to the right (Reception side) */
+                opacity: 0;  /* Fades out as it exits */
+            }
+            100% {
+                left: -10%; /* Instantly teleports back to the start without driving backward */
                 opacity: 0;
             }
         }
 
-        /* Mobile adjustment to keep road tight */
+        /* Mobile adjustment */
         @media screen and (max-width: 768px) {
             .road-container {
                 width: 90%;
                 margin-bottom: 20px;
             }
             .car-icon {
-                width: 26px;
-                height: 26px;
+                width: 28px;
+                height: 28px;
             }
         }
 /* =========================================
@@ -847,13 +841,25 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
     <!-- Dotted Line -->
     <div class="dotted-road"></div>
     
-    <!-- Moving Car Icon -->
+<!-- =========================================
+     ANIMATED JOURNEY (SLOW SIDEWAYS CAR)
+     ========================================= -->
+<div class="road-container">
+    <!-- Dotted Ground Line -->
+    <div class="dotted-road"></div>
+    
+    <!-- Moving Sideways Car Icon -->
     <div class="car-wrapper">
         <svg class="car-icon" viewBox="0 0 24 24" fill="#8B3A3A">
+            <!-- Side-view car path facing right -->
             <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+            <!-- Wheels & Body outlines -->
+            <path d="M22.7 19l-1.2-4.2c-.3-.9-1.1-1.5-2.1-1.5H16V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v4.3H4.6c-1 0-1.8.6-2.1 1.5L1.3 19c-.3 1 .4 2 1.5 2h.2c.8 0 1.5-.5 1.8-1.2l.5-1.5h13.4l.5 1.5c.3.7 1 1.2 1.8 1.2h.2c1.1 0 1.8-1 1.5-2z"/>
         </svg>
     </div>
 </div>
+
+  
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 80px 40px; align-items: stretch;">
 
 <div style="position: relative; display: flex; flex-direction: column;">
