@@ -45,24 +45,26 @@ letter-spacing: 1px;
 /* =========================================
            MASSIVE SECTION CORNER FLOWERS
            ========================================= */
-/* 1. The Top Flower (Repeating Border) */
+/* 1. The Top Flower (Repeating & NO Stretching) */
         .top-border-flower {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 150px; /* Adjust this number to make the border taller or shorter */
+            height: 200px; /* Increased a bit so it doesn't accidentally clip the flower */
             
-            /* Magic trick to make it multiply */
             background-image: url('topnbottom.png');
-            background-repeat: repeat-x; /* Multiplies it horizontally */
-            background-size: auto 100%; /* Keeps proportions perfect */
-            background-position: center;
+            background-repeat: repeat-x; 
+            
+            /* MAGIC FIX: Locks the width of each flower stamp so it NEVER stretches! */
+            /* Change '450px' to make the pattern smaller or larger */
+            background-size: 450px auto; 
+            background-position: bottom; 
             
             z-index: 0;
             pointer-events: none;
             opacity: 0.85;
-            transform: scaleY(-1); /* Still flips it upside down for the top! */
+            transform: scaleY(-1); /* Flips it upside down */
         }
         .corner-flower {
             position: absolute;
