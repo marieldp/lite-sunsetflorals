@@ -148,25 +148,30 @@ letter-spacing: 1px;
             }
         }
 
-/* Continuous One-Way Drive (Left to Right Loop) */
+/* Continuous One-Way Drive - Perfectly Aligned to the Road */
         @keyframes driveSlow {
             0% {
-                left: -10%; /* Starts off-screen to the left (Church side) */
+                left: 0%; /* Starts exactly at the beginning of the road */
                 opacity: 0;
             }
-            5% {
-                opacity: 1; /* Fades in smoothly as it enters the road */
+            3% {
+                opacity: 1; /* Fades in very quickly */
             }
-            90% {
-                opacity: 1; /* Stays visible all the way across */
+            88% {
+                left: 90%; 
+                opacity: 1; /* Stays fully visible until it reaches the end */
             }
-            98% {
-                left: 105%; /* Reaches off-screen to the right (Reception side) */
-                opacity: 0;  /* Fades out as it exits */
+            92% {
+                left: 95%; /* Stops driving right at the edge of the dotted line */
+                opacity: 0; /* Fades out very fast */
+            }
+            99% {
+                left: 95%;
+                opacity: 0; /* Stays hidden while waiting to reset */
             }
             100% {
-                left: -10%; /* Instantly teleports back to the start without driving backward */
-                opacity: 0;
+                left: 0%;
+                opacity: 0; /* Instantly teleports back to start */
             }
         }
 
