@@ -45,22 +45,22 @@ letter-spacing: 1px;
 /* =========================================
            CORNER FLOWERS STYLING
            ========================================= */
-/* CORNER FLOWERS (HIGH Z-INDEX) */
         .corner-flower {
             position: absolute;
-            width: 70px;
+            width: 120px; /* Made them larger so they are clearly visible */
             height: auto;
-            z-index: 99; /* Higher layer so it floats OVER background colors */
-            pointer-events: none;
+            z-index: 5; /* Forces them to sit above the section background */
+            pointer-events: none; 
+            opacity: 0.85;
         }
 
-        .corner-flower.top-left { top: 0; left: 0; }
-        .corner-flower.top-right { top: 0; right: 0; transform: scaleX(-1); }
-        .corner-flower.bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
-        .corner-flower.bottom-right { bottom: 0; right: 0; transform: scale(-1); }
+        .corner-flower.top-left { top: -10px; left: -10px; }
+        .corner-flower.top-right { top: -10px; right: -10px; transform: scaleX(-1); }
+        .corner-flower.bottom-left { bottom: -10px; left: -10px; transform: scaleY(-1); }
+        .corner-flower.bottom-right { bottom: -10px; right: -10px; transform: scale(-1); }
 
         @media screen and (max-width: 768px) {
-            .corner-flower { width: 45px; }
+            .corner-flower { width: 70px; } /* Mobile size */
         }
 
         .corner-flower.top-left {
