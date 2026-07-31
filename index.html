@@ -45,16 +45,17 @@ letter-spacing: 1px;
 /* =========================================
            MASSIVE SECTION CORNER FLOWERS
            ========================================= */
-.top-border-flower {
+/* 1. The Top Flower (Fluid but capped size!) */
+        .top-border-flower {
             position: absolute;
             top: 0;
             left: 50%;
-            width: 600px; /* Predictable size! Increase or decrease this number to dial it in */
+            width: 100%;         /* Allows it to shrink fluidly on smaller screens */
+            max-width: 700px;    /* BUT stops it from ever getting too massive on big monitors! */
             height: auto;
             z-index: 0;
             pointer-events: none;
             opacity: 0.85;
-            /* Still centers and flips it upside down */
             transform: translateX(-50%) scaleY(-1); 
         }
         .corner-flower {
