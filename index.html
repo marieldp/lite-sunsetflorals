@@ -45,18 +45,16 @@ letter-spacing: 1px;
 /* =========================================
            MASSIVE SECTION CORNER FLOWERS
            ========================================= */
-    /* 1. The Top Flower (Stretched & Flipped) */
-        .top-border-flower {
+.top-border-flower {
             position: absolute;
             top: 0;
             left: 50%;
-            width: 120%; /* Stretches massively across the top */
-            min-width: 1000px; 
+            width: 600px; /* Predictable size! Increase or decrease this number to dial it in */
             height: auto;
             z-index: 0;
             pointer-events: none;
             opacity: 0.85;
-            /* Centers it horizontally AND flips it vertically to the top */
+            /* Still centers and flips it upside down */
             transform: translateX(-50%) scaleY(-1); 
         }
         .corner-flower {
