@@ -43,80 +43,52 @@ letter-spacing: 1px;
 }
 
 /* =========================================
-           MASSIVE CORNER FLOWERS
+           MASSIVE CORNER FLOWERS (ANCHORED)
            ========================================= */
         .corner-flower {
             position: absolute;
-            width: 300px; /* BIG desktop size */
+            width: 300px; 
             height: auto;
-            z-index: 5; 
+            z-index: -1; /* Puts them in the background behind the cards */
             pointer-events: none; 
             opacity: 0.85;
         }
 
-        /* Base image is Bottom-Left, so NO flip needed here */
+        /* Natural image is Bottom-Left */
         .corner-flower.bottom-left { 
-            bottom: -20px; 
-            left: -20px; 
+            bottom: -50px; 
+            left: -50px; 
             transform: none; 
         }
         
-        /* Flip horizontally for Bottom-Right */
+        /* Flip Horizontally */
         .corner-flower.bottom-right { 
-            bottom: -20px; 
-            right: -20px; 
+            bottom: -50px; 
+            right: -50px; 
             transform: scaleX(-1); 
         }
         
-        /* Flip vertically for Top-Left */
+        /* Flip Vertically (The one you saw working perfectly!) */
         .corner-flower.top-left { 
-            top: -20px; 
-            left: -20px; 
+            top: -30px; 
+            left: -50px; 
             transform: scaleY(-1); 
         }
         
-        /* Flip both directions for Top-Right */
+        /* Flip Both */
         .corner-flower.top-right { 
-            top: -20px; 
-            right: -20px; 
+            top: -30px; 
+            right: -50px; 
             transform: scale(-1); 
         }
 
-        /* Keep them large but manageable on phones */
+        /* Phone adjustments so they don't cover everything */
         @media screen and (max-width: 768px) {
-            .corner-flower { 
-                width: 180px; 
-            } 
-        }
-
-        .corner-flower.top-left {
-            top: 0;
-            left: 0;
-        }
-
-        .corner-flower.top-right {
-            top: 0;
-            right: 0;
-            transform: scaleX(-1); /* Flips horizontally */
-        }
-
-        .corner-flower.bottom-left {
-            bottom: 0;
-            left: 0;
-            transform: scaleY(-1); /* Flips vertically */
-        }
-
-        .corner-flower.bottom-right {
-            bottom: 0;
-            right: 0;
-            transform: scale(-1); /* Flips both ways */
-        }
-
-        /* Shrink flowers slightly on mobile phones */
-        @media screen and (max-width: 768px) {
-            .corner-flower {
-                width: 45px;
-            }
+            .corner-flower { width: 180px; } 
+            .corner-flower.bottom-left { bottom: -20px; left: -20px; }
+            .corner-flower.bottom-right { bottom: -20px; right: -20px; }
+            .corner-flower.top-left { top: -10px; left: -20px; }
+            .corner-flower.top-right { top: -10px; right: -20px; }
         }
 /* =========================================
            FIXED ROAD & CAR HEIGHT
@@ -928,15 +900,16 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
 
 <section id="celebration" style="padding: 50px 20px 100px 20px; background-color: #ffffff; text-align: center; overflow: hidden; position: relative;">
     
-<!-- 🌸 BIG CORNER FLOWERS 🌸 -->
-    <img src="flower.png" class="corner-flower top-left" alt="">
-    <img src="flower.png" class="corner-flower top-right" alt="">
-    <img src="flower.png" class="corner-flower bottom-left" alt="">
-    <img src="flower.png" class="corner-flower bottom-right" alt="">
+    <!-- We added padding-top here so the flowers don't hit the text -->
+    <div class="reveal-on-scroll" style="max-width: 1000px; margin: 0 auto; position: relative; z-index: 10; padding-top: 20px;">
 
-    <div class="reveal-on-scroll" style="max-width: 1000px; margin: 0 auto; position: relative; z-index: 10;">
+        <!-- 🌸 FLOWERS MOVED HERE (Anchored to the content box!) 🌸 -->
+        <img src="flower.png" class="corner-flower top-left" alt="">
+        <img src="flower.png" class="corner-flower top-right" alt="">
+        <img src="flower.png" class="corner-flower bottom-left" alt="">
+        <img src="flower.png" class="corner-flower bottom-right" alt="">
+
         <h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 60px); color: #8B3A3A; margin-bottom: 40px;">The Celebration</h2>
-    
 <!-- =========================================
      ANIMATED JOURNEY (SLOW SIDEWAYS CAR)
      ========================================= -->
