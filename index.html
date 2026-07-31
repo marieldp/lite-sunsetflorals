@@ -93,36 +93,29 @@ letter-spacing: 1px;
             }
         }
 /* =========================================
-           ROAD & SLOW MOVING SIDEWAY CAR
+           FIXED ROAD & CAR HEIGHT
            ========================================= */
         .road-container {
             position: relative;
             width: 80%;
             max-width: 600px;
-            height: 40px;
+            height: 100px; /* Much taller space for the PNG */
             margin: 0 auto 30px auto;
-            display: flex;
-            align-items: center;
-            overflow: hidden; /* Keeps the car inside the road bounds */
+            /* REMOVED overflow: hidden so your car NEVER gets clipped! */
         }
 
-        /* The Dotted Ground Line */
         .dotted-road {
+            position: absolute;
+            bottom: 10px; /* Locks the road to the bottom of the container */
             width: 100%;
-            height: 0;
             border-bottom: 2px dashed #E27D60;
             opacity: 0.6;
         }
 
-        /* The Moving Car Container */
         .car-wrapper {
             position: absolute;
-            top: 50%;
+            bottom: 8px; /* Drops the car wheels perfectly onto the road */
             left: 0;
-            transform: translateY(-85%);
-            
-            /* MAGIC SPEED FIX: 22s makes it drive VERY slowly! 
-               'linear' makes the movement smooth without sudden stops */
             animation: driveSlow 22s linear infinite; 
         }
 
@@ -903,15 +896,18 @@ Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; ani
 </section>
 
 
-<section id="celebration" style="padding: 50px 20px 100px 20px; background-color: #ffff; text-align: center;">
-<div class="reveal-on-scroll" style="max-width: 1000px; margin: 0 auto;">
-<!-- CORNER FLOWERS -->
-<img src="sideflower.png" class="corner-flower top-left" alt="">
-<img src="sideflower.png" class="corner-flower top-right" alt="">
-<img src="sideflower.png" class="corner-flower bottom-left" alt="">
-<img src="sideflower.png" class="corner-flower bottom-right" alt="">
+<section id="celebration" style="padding: 50px 20px 100px 20px; background-color: #ffff; text-align: center; overflow: hidden; position: relative;">
+    
+    <!-- ADDED position: relative; to this div so the flowers anchor here! -->
+    <div class="reveal-on-scroll" style="max-width: 1000px; margin: 0 auto; position: relative;">
 
-<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 60px); color: #8B3A3A; margin-bottom: 60px;">The Celebration</h2>
+        <!-- CORNER FLOWERS -->
+        <img src="sideflower.png" class="corner-flower top-left" alt="">
+        <img src="sideflower.png" class="corner-flower top-right" alt="">
+        <img src="sideflower.png" class="corner-flower bottom-left" alt="">
+        <img src="sideflower.png" class="corner-flower bottom-right" alt="">
+
+        <h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 60px); color: #8B3A3A; margin-bottom: 40px;">The Celebration</h2>
     
 <!-- =========================================
      ANIMATED JOURNEY (SLOW SIDEWAYS CAR)
