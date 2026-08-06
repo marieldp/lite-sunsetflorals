@@ -1437,21 +1437,43 @@ earlyObserver.observe(entourageReveal);
 }, 500);
 
 function loadEntourage() {
-fetch(`${CONFIG.webAppUrl}?action=getEntourage`)
-.then(res => res.json())
-.then(data => {
-Object.keys(data).forEach(roleID => {
-const el = document.getElementById(roleID);
-if (el) {
-let text = data[roleID].trim();
-if (text.includes(',')) { el.innerHTML = text.split(',').map(n => n.trim()).join('<br>'); } 
-else if (text.includes('&')) { let names = text.split('&'); el.innerHTML = names[0].trim() + '<br>' + names[1].trim(); } 
-else { el.innerHTML = text; }
-el.style.opacity = "1";
+    // 1. Instantly load from memory if it exists!
+    const cachedData = localStorage.getItem('weddingEntourage');
+    if (cachedData) {
+        paintEntourage(JSON.parse(cachedData));
+    }
+
+    // 2. Silently fetch from Google to get fresh updates
+    fetch(`${CONFIG.webAppUrl}?action=getEntourage`)
+    .then(res => res.json())
+    .then(data => {
+        // Save the fresh data to memory for next time
+        localStorage.setItem('weddingEntourage', JSON.stringify(data));
+        // Paint the fresh data to the screen
+        paintEntourage(data);
+    })
+    .catch(err => console.log("Google Script loading delayed: ", err));
 }
-});
-window.dispatchEvent(new Event('scroll'));
-});
+
+// The painter function that actually puts text on the screen
+function paintEntourage(data) {
+    Object.keys(data).forEach(roleID => {
+        const el = document.getElementById(roleID);
+        if (el) {
+            let text = data[roleID].trim();
+            if (text.includes(',')) { 
+                el.innerHTML = text.split(',').map(n => n.trim()).join('<br>'); 
+            } else if (text.includes('&')) { 
+                let names = text.split('&'); 
+                el.innerHTML = names[0].trim() + '<br>' + names[1].trim(); 
+            } else { 
+                el.innerHTML = text; 
+            }
+            el.style.opacity = "1";
+        }
+    });
+    // Trigger scroll to fix animations
+    window.dispatchEvent(new Event('scroll'));
 }
 
 
